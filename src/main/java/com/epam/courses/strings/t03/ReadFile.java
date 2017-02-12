@@ -5,7 +5,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Created by Narek on 26.01.2017.
+ * Date: 26.01.2017
+ * @author Karapetyan N.K
  */
 public class ReadFile {
     private static final String REFREGEX = "[\\(][Рр]ис[\\.][\\s]*(([(\\d]{1,2})[^\\)]*[\\)])";
@@ -18,11 +19,13 @@ public class ReadFile {
     private StringBuilder sentences = new StringBuilder();
     private Pattern p;
     private Matcher m;
+    @SuppressWarnings("WeakerAccess")
     public ReadFile(File file){
         assert file != null;
         read(file);
     }
 
+    @SuppressWarnings("WeakerAccess")
     public boolean isRightSequence(){
         p = Pattern.compile(REFREGEX);
         m = p.matcher(text);
@@ -37,18 +40,21 @@ public class ReadFile {
         return true;
     }
 
+    @SuppressWarnings("WeakerAccess")
     public String getRefSentences(){
         p = Pattern.compile(SENTREGEX);
         m = p.matcher(text);
         while(m.find())
-            sentences.append(m.group()+"\n");
+            sentences.append(m.group()).append("\n");
         return sentences.toString();
     }
 
+    @SuppressWarnings("WeakerAccess")
     public String getInitialText(){
         return text.toString();
     }
 
+    @SuppressWarnings("WeakerAccess")
     public int refAmount(CharSequence info){
         p = Pattern.compile(REFREGEX);
         m = p.matcher(info);
